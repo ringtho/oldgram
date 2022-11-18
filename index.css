@@ -1,0 +1,75 @@
+html, body {
+    margin: 0 auto;
+    width: 375px;
+    font-family: 'Source Sans Pro', sans-serif;
+    height: 100vh;
+}
+
+header{
+    display: flex;
+    height: 60px;
+    border-bottom: 1px solid #c6c6c6;
+    justify-content: space-between;
+}
+
+h2 {
+    font-size: 13px;
+    margin: 0;
+}
+
+p {
+    font-size: 12px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+main {
+    margin-bottom: 0;
+}
+
+.user-avatar,
+.avatar img{
+    border-radius: 50%;
+}
+
+.avatar {
+    display: flex;
+    height: 34px;
+}
+
+.user-avatar {
+    height: 38px;
+    width: 38px;
+}
+
+.title {
+    padding-left: 10px;
+}
+
+.post-img {
+    width: 100%;
+    cursor: pointer;
+}
+
+.separator {
+    height: 25px;
+    background-color: #EDEDED;
+}
+
+.icons img{
+    width: 30px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.icons img:hover {
+    opacity: 0.3;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.pd {
+    padding: 8px 16px;
+}
