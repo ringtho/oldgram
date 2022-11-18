@@ -45,10 +45,10 @@ function render(){
                         </div>
                         
                     </div>
-                    <img class="post-img" src="${element.post}" alt="post-img">
+                    <img class="post-img" src="${element.post}" alt="post-img" ondblclick="doubleClick()">
                     <div class="icons pd">
                         
-                        <img id="like" src="images/icon-heart.png" alt="like-icon">
+                        <img id="like-${element.username}" src="images/icon-heart.png" alt="like-icon" onclick="onClick()">
                         <img id="comments" src="images/icon-comment.png" alt="comment-icon">
                         <img id="message" src="images/icon-dm.png" alt="dm-icon">
                         
@@ -68,15 +68,26 @@ function incrementLikes(likesCount){
     likesCount.innerText = likes
 }
 
-const postImg = document.querySelector(".post-img")
-let likesCount = document.getElementById("likes-counter")
-postImg.addEventListener('dblclick', function(){
-    incrementLikes(likesCount)   
-})
 
-let likeIcon = document.getElementById('like')
-likeIcon.addEventListener('click', function(){
+let likesCount = document.getElementById("likes-counter")
+
+
+function onClick(){
     incrementLikes(likesCount)
-})
+}
+
+function doubleClick(){
+    incrementLikes(likesCount)
+}
+
+// const postImg = document.querySelector(".post-img")
+// postImg.addEventListener('dblclick', function(){
+//     incrementLikes(likesCount)   
+// })
+
+// let likeIcon = document.getElementById('like')
+// likeIcon.addEventListener('click', function(){
+//     incrementLikes(likesCount)
+// })
 
 
