@@ -1,12 +1,13 @@
 import { posts } from "/data.js"
 
 
-let mainEl = document.getElementById('main-container')
+const mainEl = document.getElementById('main-container')
 
 
-render()
+renderPosts()
 
-function render(){
+function renderPosts(){
+    let renderHtml = ""
     posts.forEach(element => {
         const displayEl = ` 
                     <div class="avatar pd">
@@ -17,49 +18,60 @@ function render(){
                         </div>
                         
                     </div>
-                    <img class="post-img" src="${element.post}" alt="post-img" ondblclick="doubleClick()">
+                    <img class="post-img" 
+                        src="${element.post}" 
+                        alt="post-img" data-img="${element.username}">
                     <div class="icons pd">
                         
-                        <img id="like-${element.username}" src="images/icon-heart.png" alt="like-icon" onclick="onClick()">
-                        <img id="comments" src="images/icon-comment.png" alt="comment-icon">
-                        <img id="message" src="images/icon-dm.png" alt="dm-icon">
+                        <img src="images/icon-heart.png" 
+                            alt="like-icon" 
+                            data-heart="${element.username}">
+                        <img src="images/icon-comment.png" 
+                            alt="comment-icon" 
+                            data-comment="${element.username}">
+                        <img src="images/icon-dm.png" 
+                            alt="dm-icon" 
+                            data-dm="${element.username}">
                         
                     </div>
                     <p class="likes bold pd">
                         <span id="likes-counter">${element.likes}</span> likes</p>
-                    <p class="comment pd"><span class="bold">${element.username}</span> ${element.comment}</p>
+                    <p class="comment pd">
+                        <span class="bold">${element.username}</span> ${element.comment}</p>
                     <div class="separator"></div>
                 `
-        mainEl.innerHTML += displayEl
+        renderHtml += displayEl
     })
+
+    mainEl.innerHTML = renderHtml
 }
 
-function incrementLikes(likesCount){
-    let likes = Number(likesCount.innerText)
-    likes += 1
-    likesCount.innerText = likes
+document.addEventListener('click', function(e){
+    if(e.target.dataset.heart){
+        handleLikeClick(e.target.dataset.heart)
+    }   
+})
+
+function handleLikeClick(postId){
+    const postTargetObj = posts.filter(function(post){
+        return post.username === postId
+    })[0]
+    postTargetObj.likes++
+    renderPosts()
 }
 
+document.addEventListener('dblclick', function(e){
+    if(e.target.dataset.img){
+        handleLikeDoubleClick(e.target.dataset.img)
+    }
+})
 
-let likesCount = document.getElementById("likes-counter")
-
-
-function onClick(){
-    incrementLikes(likesCount)
+function handleLikeDoubleClick(postId){
+    const postTargetObj = posts.filter(function(post){
+        return post.username === postId
+    })[0]
+    postTargetObj.likes++
+    renderPosts()
 }
-
-function doubleClick(){
-    incrementLikes(likesCount)
-}
-
-// const postImg = document.querySelector(".post-img")
-// postImg.addEventListener('dblclick', function(){
-//     incrementLikes(likesCount)   
-// })
-
-// let likeIcon = document.getElementById('like')
-// likeIcon.addEventListener('click', function(){
-//     incrementLikes(likesCount)
-// })
 
 
